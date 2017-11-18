@@ -9,6 +9,22 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to '게시판', root_path, class: 'navbar-brand'%>
+          <a class="navbar-brand"></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+              <li><p>이메일 : <%= current_user.email %></p></li>
+              <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %> </li>
+          <% else %>
+            <li><%= link_to '로그인', new_user_session_path %> </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
